@@ -1,22 +1,46 @@
 <!DOCTYPE html>
 <head>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://www.w3schools.com/lib/w3.js"></script>
     <script src="js/templates.js"></script>
 </head>
     <html>
     <body>
+        <div class="w3-container w3-dark-gray"> <h1>Control Board</h1></div>
+        <div class="w3-row">
+            <div class="w3-half">
+                <div class="t-panel" title="Group one">
+                    <input name="my/sample/osc/1" class="t-slider" min="1.00" max="5.00" value="2.55" alt="Perfect score" />
+                    <input name="my/sample/osc/2" class="t-slider" min="1" max="5" value="5" alt="Another one" />
+                </div>
 
-        <div class="t-panel">
-            <input name="my/sample/osc/1" class="t-slider" min="1.00" max="5.00" value="2.55" alt="Perfect score" />
-            <input name="my/sample/osc/2" class="t-slider" min="1" max="5" value="5" alt="Another one" />
+                <div class="t-panel" title="Group two">
+                    <input class="t-slider-vert" min="0" max="10" value="3" alt="x" />
+                    <input class="t-slider-vert" min="0" max="10" value="5" alt="y" />
+                    <input class="t-slider-vert" min="0" max="10" value="1" alt="z" />
+                    <input class="t-slider-vert" min="0" max="10" value="9" alt="w" />
+                    <input class="t-slider-vert" min="0" max="10" value="10" alt="p" />
+                    <input class="t-slider-vert" min="0" max="10" value="0" alt="q" />
+                </div>
+
+                <div class="t-panel" title="Group three">
+                    <input name="my/sample/osc/1" class="t-slider" min="1.00" max="5.00" value="2.55" alt="Perfect score" />
+                    <input name="my/sample/osc/2" class="t-slider" min="1" max="5" value="5" alt="Another one" />
+                </div>
+            </div>
+            <div class="w3-half">
+                <div class="t-panel" title="Group four">
+                    <input name="my/sample/osc/1" class="t-slider" min="1.00" max="5.00" value="2.55" alt="Perfect score" />
+                    <input name="my/sample/osc/2" class="t-slider" min="1" max="5" value="5" alt="Another one" />
+                </div>
+            </div>
         </div>
-        <input class="t-slider-vert" min="1" max="10" value="3" alt="x" />
 
-
+        <!-- templates -->
         <div id="templates" w3-include-html="templates.html" style="display:none"></div>
         <script>
-            w3.includeHTML(applyTemplates);
+        w3.includeHTML(applyTemplates);
         </script>
     </body>
 </html>
