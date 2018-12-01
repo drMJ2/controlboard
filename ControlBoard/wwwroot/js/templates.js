@@ -12,6 +12,7 @@ function replaceSliders()
         var input = nodes[0];
         var valueAsPercentage = (100 * (input.value - input.min)/ (input.max - input.min)) + "%";
         var slider = template.cloneNode(true);
+        slider.name = input.name;
         slider.children[0].style.width = valueAsPercentage;
         slider.children[0].innerHTML = input.alt;
         slider.children[1].innerHTML = input.value;
@@ -23,9 +24,11 @@ function replaceSliders()
     var template = document.getElementById("t-slider-vert");
     var count = nodes.length;
     for (var i = 0; i < count; i++) {
+        
         var input = nodes[0];
         var valueAsPercentage = (100 * (input.value - input.min) / (input.max - input.min)) + "%";
         var slider = template.cloneNode(true);
+        slider.name = input.name;
         slider.children[1].style.height = valueAsPercentage;
         slider.children[1].innerHTML = input.value;
         slider.children[2].innerHTML = input.alt;

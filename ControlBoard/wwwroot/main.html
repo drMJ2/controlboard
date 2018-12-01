@@ -7,13 +7,11 @@
     <html>
     <body>
 
-
-        <button onclick="w3.toggleShow('#group1')" class="w3-button w3-block w3-left-align w3-gray">Toggle Hide/Show</button>
-        <div id="group1" class="w3-container">
-            <input id="test" class="t-slider" type="range" min="1.00" max="5.00" value="2.55" alt="Perfect score" />
-            <input id="test2" class="t-slider" type="range" min="1" max="5" value="5" alt="Another one" />
+        <div class="t-panel">
+            <input name="my/sample/osc/1" class="t-slider" min="1.00" max="5.00" value="2.55" alt="Perfect score" />
+            <input name="my/sample/osc/2" class="t-slider" min="1" max="5" value="5" alt="Another one" />
         </div>
-        <input id="test3" class="t-slider-vert" type="range" min="1" max="10" value="3" alt="x" />
+        <input class="t-slider-vert" min="1" max="10" value="3" alt="x" />
 
 
         <div id="templates" w3-include-html="templates.html" style="display:none"></div>
