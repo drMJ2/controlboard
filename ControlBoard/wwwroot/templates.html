@@ -1,34 +1,64 @@
 ﻿<style>
-    .slider {
+    .slider-horizontal, .slider-vertical {
+        /*slider*/
         color: white;
         background-color: gray;
         margin: 5px;
-        border:2px solid gray;
+        border: 2px solid gray;
+        cursor: pointer;
     }
-
-    .slider-horizontal {
+        .slider-horizontal {
         height: 30px;
-
     }
-
+    .slider-horizontal:hover {
+        background: linear-gradient(to bottom, gray 0%, darkgray 100%);
+    }
     .slider-vertical {
         height: 300px;
         width: 30px;
-        float: left;
+        float: left; /*allows side-by-side divs*/
+    }
+    .slider-vertical:hover {
+        background: linear-gradient(to right, gray 0%, darkgray 100%);
+    }
+    .slider-fill-horizontal, .slider-fill-vertical {
+        /*copied from w3-green*/
+        color: #fff !important;
+        background-color: #4caf50 !important;
+        width: 100%;
+        height: 100%;
+        overflow-x: visible;
     }
 
+        .slider-fill-horizontal:hover {
+            background: linear-gradient(to bottom, #4caf50 0%, darkgreen 100%);
+        }
+        .slider-fill-vertical:hover {
+            background: linear-gradient(to right, #4caf50 0%, darkgreen 100%);
+        }
+    .slider-hidden, .slider-hidden-vertical {
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+    }
+    .slider-hidden-vertical {
+        writing-mode: bt-lr;
+        -webkit-appearance: none;
+    }
     .panel {
         background-color:white;
         margin: 2px;
         border:1px solid gray;
-        overflow: hidden; /* add this to contain floated children */
+        overflow: hidden; /* required to contain floated children */
     }
-
     .panel-head {
         color: black;
         background-color: lightgray;
+        /*background: linear-gradient(to right, lightblue 0%, lightgray 100%);*/
+        /*copied from w3-block */
         display: block;
         width: 100%;
+        /*copied from w3-button */
         text-align: left !important;
         border: none;
         border-bottom: 1px solid gray;
@@ -45,20 +75,36 @@
         -ms-user-select: none;
         user-select: none;
     }
+    .panel-head:hover {
+        background: linear-gradient(to bottom, lightgray 0%, darkgray 100%);
+    }
+    .vertical {
+        -webkit-transform: rotate(270deg);
+        -moz-transform: rotate(27deg);
+        -o-transform: rotate(270deg);
+        transform: rotate(270deg);
+        white-space: nowrap;
+        display: block;
+        bottom: 0;
+        width: 30px;
+        height: 23px;
+        margin: 0 0 5px -15px;
+    }
 </style>
 
 
-<div id="t-slider" class="w3-display-container slider slider-horizontal">
-    <div class="w3-display-left  w3-green" style="width:35%;height:100%">Left</div>
-    <div class="w3-display-right">35</div>
+<div class="w3-display-container t-slider">
+    <div class="w3-display-left  slider-fill-horizontal"></div>
+    <div class="w3-display-left" style="width:100%">Label</div>
+    <div class="w3-display-right">Value</div>
 </div>
 
-<div id="t-slider-vert" class="w3-display-container slider slider-vertical">
-    <div class="w3-display-bottommiddle w3-green" style="height:30%;width:100%;"></div>
-    <div class="w3-display-topmiddle" style="width:100%;overflow:hidden;text-overflow: ellipsis;text-align:center">100</div>
-    <div class="w3-display-bottommiddle" style="color:white;width:100%;overflow:hidden;text-overflow: ellipsis;text-align:center">label</div>
+<div class="w3-display-container t-slider-vert">
+    <div class="w3-display-bottommiddle slider-fill-vertical"></div>
+    <div class="w3-display-bottommiddle vertical" >Label</div>
+    <div class="w3-display-topmiddle" style="width:100%;overflow:hidden;text-overflow: ellipsis;text-align:center">Value</div>
 </div>
 
-<div class="panel">
-    <button onclick="w3.toggleShow('panel')" class="panel-head"><i class="fa fa-caret-down"></i></button>
+<div class="t-panel">
+    <button class="panel-head"><i class="fa fa-caret-down"></i></button>
 </div>
