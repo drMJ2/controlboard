@@ -1,50 +1,45 @@
 ﻿function applyTemplates() {
     replacePanels(); // order is important, because moving nodes around seems to strip away event handlers
-    replaceSliders(); 
+    replaceSliders("horizontal"); 
+    replaceSliders("vertical"); 
 }
 
-function replaceSliders()
+function replaceSliders(/*string: horizontal or vertical*/type)
 {
-    var nodes = document.getElementsByClassName("slider-horizontal")
-    var template = document.getElementsByClassName("t-slider")[0];
+    // creates a div around the range input tag (based on template)
+    // the stule and classes of the range input tag are copied to the outer div
+    var nodes = document.getElementsByClassName("slider-" + type);
+    var template = document.getElementsByClassName("t-slider-"+type)[0];
     var count = nodes.length;
     for (var i = 0; i < count; i++) {
         
         var input = nodes[i];
-        input.addEventListener("input", updateHSlider);
+        input.addEventListener("input", updateSlider);
         var slider = template.cloneNode(true);
-        slider.children[1].innerHTML = input.alt;
+        slider.children[2].innerHTML = input.alt;
         input.parentElement.insertBefore(slider, input);
-        input.classList.add("w3-display-left");
-        input.classList.add("slider-hidden");
-        input.classList.remove("slider-horizontal");
-        slider.insertBefore(input, null);
-        slider.classList.add("slider-horizontal");
-        updateHSlider2(input);
-    }
+        input.classList.remove("slider-" + type);
+        copyClasses(input, slider);
+        for (var prop in input.style) {
+            slider.style[prop] = input.style[prop];
+        }
+        
+        input.classList.add("slider-hidden-" + type);
 
-    var nodes = document.getElementsByClassName("slider-vertical")
-    var template = document.getElementsByClassName("t-slider-vert")[0];
-    var count = nodes.length;
-    for (var i = 0; i < count; i++) {
-        var input = nodes[i];
-        input.addEventListener("input", updateVSlider);
-        var slider = template.cloneNode(true);
-        slider.children[1].innerHTML = input.alt;
-        input.parentElement.insertBefore(slider, input);
-        input.classList.add("w3-display-bottom");
-        input.classList.add("slider-hidden-vertical");
-        input.classList.remove("slider-vertical");
+
         slider.insertBefore(input, null);
-        slider.classList.add("slider-vertical");
-        updateVSlider2(input);
+        slider.classList.add("slider-" + type);
+        updateSlider2(input, type);
+
     }
 }
+
 
 function replacePanels()
 {
     // groups all the contents of the "panel" div under a child div, and injects a button in front of the child div
-    var nodes = document.getElementsByClassName("panel")
+    // the user-defined div remains the parent, and keeps its style and classes
+    var nodes = document.getElementsByClassName("panel");
     var template = document.getElementsByClassName("t-panel")[0];
     var count = nodes.length;
     for (var i = 0; i < count; i++) {
@@ -75,22 +70,39 @@ function toggleShow(node)
         node.style.display = "block";
     }
 }
-function updateHSlider() {
-    updateHSlider2(this);
+function updateSlider() {
+    if (this.classList.contains("slider-hidden-horizontal")) {
+        updateHSlider2(this);
+    }
+    else {
+        updateVSlider2(this);
+    }
 }
 
-function updateHSlider2(slider)
-{
-    slider.parentElement.children[0].style.width = 100 * (slider.value - slider.min) / (slider.max - slider.min) + "%";
-    slider.parentElement.children[2].innerHTML = slider.value;
-    slider.parentElement.title = slider.value;
-}
 function updateVSlider() {
     updateVSlider2(this);
 }
 
+function updateSlider2(slider, type)
+{
+    if (type == "vertical") {
+        updateVSlider2(slider);
+    }
+    else {
+        updateHSlider2(slider);
+    }
+}
+
 function updateVSlider2(slider) {
     slider.parentElement.children[0].style.height = 100 * (slider.value - slider.min) / (slider.max - slider.min) + "%";
-    slider.parentElement.children[2].innerHTML = slider.value;
+    slider.parentElement.children[1].style.height = (100 - 100 * (slider.value - slider.min) / (slider.max - slider.min)) + "%";
+    slider.parentElement.children[3].innerHTML = slider.value;
+    slider.parentElement.title = slider.value;
+}
+
+function updateHSlider2(slider) {
+    slider.parentElement.children[0].style.width = 100 * (slider.value - slider.min) / (slider.max - slider.min) + "%";
+    slider.parentElement.children[1].style.width = (100 - 100 * (slider.value - slider.min) / (slider.max - slider.min)) + "%";
+    slider.parentElement.children[3].innerHTML = slider.value;
     slider.parentElement.title = slider.value;
 }
