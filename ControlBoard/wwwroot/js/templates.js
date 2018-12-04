@@ -23,13 +23,14 @@ function replaceSliders(/*string: horizontal or vertical*/type)
         for (var prop in input.style) {
             slider.style[prop] = input.style[prop];
         }
-        
+
         input.classList.add("slider-hidden-" + type);
 
 
         slider.insertBefore(input, null);
         slider.classList.add("slider-" + type);
         updateSlider2(input, type);
+        slider.children[0].style.backgroundColor = input.dataset.fillColor;
 
     }
 }
