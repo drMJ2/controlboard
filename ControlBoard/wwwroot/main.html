@@ -3,48 +3,48 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://www.w3schools.com/lib/w3.js"></script>
-    <script src="js/templates.js"></script>
+    <link rel="stylesheet" href="css/simplecontrols.css" />
+    <script src="js/simplecontrols.js"></script>
 </head>
     <body>
         <div class="w3-container w3-dark-gray"> <h1>Control Board</h1></div>
         <div class="w3-row">
             <div class="w3-half">
-                <div class="panel" title="Group one">
-                    <input type="range" name="my/sample/osc/1" class="slider-horizontal" min="1.00" max="5.00" step="0.01" value="2.55" alt="Perfect score" data-fill-color="red"/>
-                    <input type="range" name="my/sample/osc/2" class="slider-horizontal" min="1" max="5" value="5" step="0.1" alt="Another one" />
+                <div class="ctl-panel" title="Group one">
+                    <input type="range" name="my/sample/osc/1" class="ctl-hslider" min="1.00" max="5.00" step="0.01" value="2.55" title="Perfect score" data-fill-color="red"/>
+                    <input type="range" name="my/sample/osc/2" class="ctl-hslider" min="1" max="5" value="5" step="0.1" title="Another one" />
                 </div>
 
-                <div class="panel" title="Group two">
-                    <input type="range" class="slider-vertical" min="0" max="10" value="3" alt="x coord" />
-                    <input type="range" class="slider-vertical" min="0" max="10" value="5" alt="y coord" />
-                    <input type="range" class="slider-vertical" min="0" max="10" value="1" alt="z coord" />
-                    <input type="range" class="slider-vertical" min="0" max="10" value="9" alt="w spin" />
-                    <input type="range" class="slider-vertical" min="0" max="10" value="10" alt="point" />
-                    <input type="range" class="slider-vertical" min="0" max="10" value="0" alt="queue" />
+                <div class="ctl-panel" title="Group two">
+                    <input type="range" class="ctl-vslider" min="0" max="10" value="3" title="x coord" />
+                    <input type="range" class="ctl-vslider" min="0" max="10" value="5" title="y coord" />
+                    <input type="range" class="ctl-vslider" min="0" max="10" value="1" title="z coord" />
+                    <input type="range" class="ctl-vslider" min="0" max="10" value="9" title="w spin" />
+                    <input type="range" class="ctl-vslider" min="0" max="10" value="10" title="point" />
+                    <input type="range" class="ctl-vslider" min="0" max="10" value="0" title="queue" />
                 </div>
 
-                <div class="panel" title="Group three">
-                    <input type="range" name="my/sample/osc/1" class="slider-horizontal" min="1.00" max="5.00" value="2.55" alt="Imperfect score" />
-                    <input type="range" name="my/sample/osc/2" class="slider-horizontal" min="1" max="5" value="5" alt="A better slider" />
+                <div class="ctl-panel" title="Group three">
+                    <input type="range" name="my/sample/osc/1" class="ctl-hslider" min="1.00" max="5.00" value="2.55" title="Imperfect score" />
+                    <input type="range" name="my/sample/osc/2" class="ctl-hslider" min="1" max="5" value="5" title="A better slider" />
                 </div>
             </div>
             <div class="w3-half">
-                <div class="panel" title="Group four">
-                    <input type="range" name="my/sample/osc/1" class="slider-horizontal" min="1.00" max="5.00" value="2.55" alt="Regular score" />
-                    <input type="range" name="my/sample/osc/2" class="slider-horizontal" min="1" max="5" value="5" alt="Last" />
+                <div class="ctl-panel" title="Group four">
+                    <input type="range" name="my/sample/osc/1" class="ctl-hslider" min="1.00" max="5.00" value="2.55" title="Regular score" />
+                    <input type="range" name="my/sample/osc/2" class="ctl-hslider" min="1" max="5" value="5" title="Last" />
                 </div>
             </div>
             <div class="w3-half">
-                <div class="panel" title="Group five">
-                    <input type="range" name="my/sample/osc/1" class="slider-horizontal" min="0.00" max="1.00" value="1" style="width:100px" data-fill-color="red"/>
+                <div class="ctl-panel" title="Group five">
+                    <input type="range" name="my/sample/osc/1" class="ctl-hslider" min="0.00" max="1.00" value="1" style="width:100px" data-fill-color="red"/>
                 </div>
             </div>
         </div>
 
         <!-- templates -->
-        <div id="templates" w3-include-html="templates.html" style="display:none"></div>
+        <div id="templates" w3-include-html="simplecontrols.html" style="display:none"></div>
         <script>
-        w3.includeHTML(applyTemplates);
+            w3.includeHTML(ctl.apply);
         </script>
     </body>
-</html>

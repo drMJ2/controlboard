@@ -1,0 +1,131 @@
+﻿.ctl-hslider, .ctl-vslider {
+    /*slider*/
+    position: relative;
+    color: white;
+    background-color: gray;
+    margin: 5px;
+    border: 2px solid gray;
+    cursor: pointer;
+}
+.ctl-hslider {
+    height: 30px;
+}
+.ctl-hslider:hover {
+    background: linear-gradient(to bottom, gray 0%, darkgray 100%);
+}
+.ctl-vslider {
+    height: 300px;
+    width: 30px;
+    float: left; /*allows side-by-side divs*/
+}
+.ctl-vslider:hover {
+    background: linear-gradient(to right, gray 0%, darkgray 100%);
+}
+.sld-hfill, .sld-hempty, .sld-hlabel, .sld-hvalue {
+    position: absolute;
+    top: 50%;
+    transform: translate(0%, -50%);
+    -ms-transform: translate(-0%,-50%);
+}
+.sld-hfill, .sld-hlabel {
+    left: 0%;
+}
+.sld-hempty, .sld-hvalue {
+    right: 0%;
+}
+.sld-vfill, .sld-vempty, .sld-vlabel, .sld-vvalue {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    -ms-transform: translate(-50%,0%);
+}
+.sld-vempty, .sld-vvalue {
+    top: 0px;
+}
+.sld-vfill, .sld-vlabel{
+    bottom: 0px;
+}
+.sld-hfill, .sld-vfill {
+    /*copied from w3-green*/
+    width: 100%;
+    height: 100%;
+    background-color: #4caf50;
+}
+.sld-hempty, .sld-vempty {
+    /*background-color: darkgray;*/
+    width: 100%;
+    height: 100%;
+}
+
+.sld-vlabel {
+    -webkit-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    transform: rotate(270deg);
+    white-space: nowrap;
+    display: block;
+    bottom: 0;
+    width: 30px;
+    height: 23px;
+    margin: 0 0 5px -15px;
+}
+
+.sld-hidden-hslider, .sld-hidden-vslider {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+.sld-hidden-hslider {
+    /*w3-display-left*/
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    transform: translate(0%, -50%);
+    -ms-transform: translate(-0%,-50%);
+}
+.sld-hidden-hslider::-ms-tooltip {
+    display: none;
+}
+.sld-hidden-vslider {
+    writing-mode: bt-lr;
+    -webkit-appearance: none;
+}
+.sld-hidden-vslider::-ms-tooltip {
+    display: none;
+}
+.ctl-panel {
+    background-color: white;
+    margin: 2px;
+    border: 1px solid gray;
+    overflow: hidden; /* required to contain floated children */
+}
+.ctl-panel-head {
+    color: black;
+    background-color: lightgray;
+    /*background: linear-gradient(to right, lightblue 0%, lightgray 100%);*/
+    /*copied from w3-block */
+    display: block;
+    width: 100%;
+    /*copied from w3-button */
+    text-align: left;
+    border: none;
+    border-bottom: 1px solid gray;
+    padding: 8px 16px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.ctl-panel-head:hover {
+    background: linear-gradient(to bottom, lightgray 0%, darkgray 100%);
+}
+
+
+
