@@ -1,19 +1,19 @@
 ﻿ctl = {};
 
 // Updates panels and sliders
-ctl.apply = function applyTemplates() {
+ctl.apply = function() {
     // order is important, because moving nodes around seems to strip away event handlers. Panels must be first.
     replacePanels();
-    replaceSliders("hslider");
-    replaceSliders("vslider");
+    replaceSliders("ctl-hslider");
+    replaceSliders("ctl-vslider");
 };
 
 // Creates a div around the range input tag (based on template)
 // The style and classes of the range input tag are copied to the outer div
-function replaceSliders(/*string: horizontal or vertical*/type)
+function replaceSliders(/*string: ctl-hslider or ctl-vslider*/className)
 {
-    var nodes = document.getElementsByClassName("ctl-" + type);
-    var template = document.getElementById("ctl-template-"+type);
+    var nodes = document.getElementsByClassName(className);
+    var template = document.getElementById("ctl-template-slider");
     var count = nodes.length;
     for (var i = 0; i < count; i++) {
         
@@ -21,7 +21,8 @@ function replaceSliders(/*string: horizontal or vertical*/type)
 
         // create and insert a copy of the slider template
         var slider = template.cloneNode(true);
-        slider.children[2].innerHTML = input.title;
+        slider.id = null;
+        slider.children[0].children[2].innerHTML = input.title;
         input.parentElement.insertBefore(slider, input);
         
         // copy classes and inline style from the range input tag, including data-fill-color
@@ -29,16 +30,32 @@ function replaceSliders(/*string: horizontal or vertical*/type)
         for (var prop in input.style) {
             slider.style[prop] = input.style[prop];
         }
-        slider.children[0].style.background = input.dataset.fillColor;
+        // vertical sliders require special handling of width/height/transform
+        slider.children[0].children[0].style.background = input.dataset.fillColor;
+        if (className === "ctl-vslider") {
+            if (input.style.height) {
+                slider.children[0].style.width = input.style.height;
+                var o = input.clientHeight / 2;
+                slider.children[0].style["transform-origin"] = o + "px " + o + "px";
+            }
 
-        // keep the source range input as a hidden last child. we still need it for the oninput event, and any custom event handlers
-        input.classList.remove("ctl-" + type);
-        input.classList.add("sld-hidden-" + type);
+            slider.children[0].style.width = input.style.height;
+            slider.children[0].style.height = input.style.width;
+        }
+
+        // keep the source range input as a hidden last child. we still need it for the oninput event, and any custom event handlers, but clear the inline style
+        input.classList.remove(className);
+        input.classList.add("sld-hidden-slider");
+        input.addEventListener("change", updateSlider); // for IE
         input.addEventListener("input", updateSlider);
-        slider.insertBefore(input, null);
+        for (prop in input.style) {
+            input.style[prop] = "";
+        }
+
+        slider.children[0].insertBefore(input, null);
 
         // update the values
-        updateSlider2(input, type);
+        updateSlider2(input);
     }
 }
 
@@ -88,31 +105,15 @@ function toggleShow(element)
 
 // Event handler for the range input oninput event.
 function updateSlider() {
-    if (this.classList.contains("sld-hidden-hslider")) {
-        updateSlider3(this, "width");
-    }
-    else {
-        updateSlider3(this, "height");
-    }
+    updateSlider2(this);
 }
 
 // Updates the elements of a slider based on the state of the input control
-function updateSlider2(rangeInput, type)
-{
-    if (type === "vslider") {
-        updateSlider3(rangeInput, "height");
-    }
-    else {
-        updateSlider3(rangeInput, "width");
-    }
-}
-
-// Updates the elements of a slider based on the state of the input control
-function updateSlider3(rangeInput, prop /*height or width*/) {
+function updateSlider2(rangeInput) {
     var value = 100 * (rangeInput.value - rangeInput.min) / (rangeInput.max - rangeInput.min);
     var slider = rangeInput.parentElement;
-    slider.children[0].style[prop] = value + "%";
-    slider.children[1].style[prop] = (100 - value) + "%";
+    slider.children[0].style.width = value + "%";
+    slider.children[1].style.width = (100 - value) + "%";
     slider.children[3].innerHTML = rangeInput.value;
-    slider.title = slider.value;
+    rangeInput.title = slider.children[2].innerHTML + "=" + rangeInput.value;
 }

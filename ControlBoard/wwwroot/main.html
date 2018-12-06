@@ -6,45 +6,71 @@
     <link rel="stylesheet" href="simplecontrols/simplecontrols.css" />
     <script src="simplecontrols/simplecontrols.js"></script>
 </head>
-    <body>
-        <div class="w3-container w3-dark-gray"> <h1>Control Board</h1></div>
-        <div class="w3-row">
-            <div class="w3-half">
-                <div class="ctl-panel" title="Group one">
-                    <input type="range" name="my/sample/osc/1" class="ctl-hslider" min="1.00" max="5.00" step="0.01" value="2.55" title="Perfect score" data-fill-color="red"/>
-                    <input type="range" name="my/sample/osc/2" class="ctl-hslider" min="1" max="5" value="5" step="0.1" title="Another one" />
-                </div>
+<body>
+    <div class="w3-container w3-dark-gray"> <h1>Control Board</h1></div>
+    <div class="ctl-panel" title="Commands">
+        <button class="w3-button w3-blue" onclick="put('cmd/scripts/test.cmd');">Run test.cmd</button>
 
-                <div class="ctl-panel" title="Group two">
-                    <input type="range" class="ctl-vslider" min="0" max="10" value="3" title="x coord" />
-                    <input type="range" class="ctl-vslider" min="0" max="10" value="5" title="y coord" />
-                    <input type="range" class="ctl-vslider" min="0" max="10" value="1" title="z coord" />
-                    <input type="range" class="ctl-vslider" min="0" max="10" value="9" title="w spin" />
-                    <input type="range" class="ctl-vslider" min="0" max="10" value="10" title="point" />
-                    <input type="range" class="ctl-vslider" min="0" max="10" value="0" title="queue" />
-                </div>
+        <button class="w3-button w3-blue" onclick="put('ps/localhost/scripts/test.ps1');">Run test.ps1</button>
+    </div>
+    <div class="w3-row">
+        <div class="w3-half">
+            <div class="ctl-panel" title="Group one">
+                <input type="range" class="ctl-hslider" min="1.00" max="5.00" step="0.01" value="2.55" title="Perfect score" data-fill-color="red"  onchange="put('osc/localost/groupOne/score?v=' + this.value);"/>
+                <input type="range" name="my/sample/osc/2" class="ctl-hslider" min="1" max="5" value="5" step="0.1" title="Another one" onchange="put('osc/localost/groupOne/another?v=' + this.value);"/>
+            </div>
 
-                <div class="ctl-panel" title="Group three">
-                    <input type="range" name="my/sample/osc/1" class="ctl-hslider" min="1.00" max="5.00" value="2.55" title="Imperfect score" />
-                    <input type="range" name="my/sample/osc/2" class="ctl-hslider" min="1" max="5" value="5" title="A better slider" />
-                </div>
+            <div class="ctl-panel" title="Group two">
+                <input type="range" class="ctl-vslider" min="0" max="10" value="3" title="x coord" onchange="put('osc/localost/groupTwo/x?v=' + this.value);"/>
+                <input type="range" class="ctl-vslider" min="0" max="10" value="5" title="y coord"  onchange="put('osc/localost/groupTwo/y?v=' + this.value);"/>
+                <input type="range" class="ctl-vslider" min="0" max="10" value="1" title="z coord"  onchange="put('osc/localost/groupTwo/x?v=' + this.value);"/>
+                <input type="range" class="ctl-vslider" min="0" max="10" value="9" title="w spin"  onchange="put('osc/localost/groupTwo/w?v=' + this.value);"/>
+                <input type="range" class="ctl-vslider" min="0" max="10" value="10" title="point"  onchange="put('osc/localost/groupTwo/p?v=' + this.value);"/>
+                <input type="range" class="ctl-vslider" min="0" max="10" value="0" title="queue"  onchange="put('osc/localost/groupTwo/q?v=' + this.value);"/>
             </div>
-            <div class="w3-half">
-                <div class="ctl-panel" title="Group four">
-                    <input type="range" name="my/sample/osc/1" class="ctl-hslider" min="1.00" max="5.00" value="2.55" title="Regular score" />
-                    <input type="range" name="my/sample/osc/2" class="ctl-hslider" min="1" max="5" value="5" title="Last" />
-                </div>
+
+            <div class="ctl-panel" title="Group three">
+                <input type="range" name="my/sample/osc/1" class="ctl-hslider" min="1.00" max="5.00" value="2.55" title="Imperfect score" />
+                <input type="range" name="my/sample/osc/2" class="ctl-hslider" min="1" max="5" value="5" title="A better slider" />
             </div>
-            <div class="w3-half">
-                <div class="ctl-panel" title="Group five">
-                    <input type="range" name="my/sample/osc/1" class="ctl-hslider" min="0.00" max="1.00" value="1" style="width:100px" data-fill-color="red"/>
-                </div>
+        </div>
+        <div class="w3-half">
+            <div class="ctl-panel" title="Group four">
+                <input type="range" name="my/sample/osc/1" class="ctl-hslider" min="1.00" max="5.00" value="2.55" title="Regular score" />
+                <input type="range" name="my/sample/osc/2" class="ctl-hslider" min="1" max="5" value="5" title="Last" />
+            </div>
+            <div class="ctl-panel" title="Group five">
+                <input type="range" name="my/sample/osc/1" class="ctl-hslider" min="0.00" max="1.00" value="1" style="width:100px" data-fill-color="red" />
+            </div>
+        </div>
+    </div>
+
+    <!-- templates -->
+    <div style="display:none">
+        <div id="ctl-template-slider">
+            <div>
+                <div class="sld-fill"></div>
+                <div class="sld-empty"></div>
+                <div class="sld-label"></div>
+                <div class="sld-value"></div>
             </div>
         </div>
 
-        <!-- templates -->
-        <div id="templates" w3-include-html="simplecontrols/simplecontrols.html" style="display:none"></div>
-        <script>
-            w3.includeHTML(ctl.apply);
-        </script>
-    </body>
+        <div id="ctl-template-panel">
+            <button class="ctl-panel-head">
+                <!-- This icon requires https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css -->
+                <i class="fa fa-caret-down"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Apply the SimpleControls templates-->
+    <script>
+        ctl.apply();
+        var http = new XMLHttpRequest();
+        function put(url) {
+            http.open('PUT', url, false);
+            http.send();
+        }
+    </script>
+</body>

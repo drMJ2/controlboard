@@ -1,0 +1,1 @@
+"This is a powershell script"
