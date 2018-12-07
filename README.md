@@ -1,11 +1,11 @@
-*# Web-based Control Board
+# Web-based Control Board
 ASP.Net Core template for sending OSC commands (and more) based on HTTP PUT requests from an HTML client. This template is designed for deploying on a private network, e.g. when controlling one or more audio/video servers and devices connected to the same subnet.
 MIT License.
 
 ## Installation instructions:
 * Clone the repo.
 * Install [.Net Core](https://dotnet.microsoft.com/download/archives) (Windows or Linux). 
-* Excecute the following command to enable local HTTPS: *dotnet dev-certs https --trust
+* Excecute the following command to enable local HTTPS: *dotnet dev-certs https --trust*
 * Execute the following command to compile and run the app: *dotnet run*
 * Open a browser and navigate to https://localhost:5001/main.html
 
