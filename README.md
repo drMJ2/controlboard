@@ -5,5 +5,5 @@ MIT License.
 ## Installation instructions:
 Install .Net Core (Windows or Linux). Run "dotnet run" in the project directory. Open a browser and navigate to https://localhost:5001/main.html
 
-For configuring the web server beyond the default settings (urls, certs, permissions etc.) check out these links: [Kestrel] (https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel?view=aspnetcore-2.2), [http.sys](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/httpsys?view=aspnetcore-2.2) and [everything else](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/?view=aspnetcore-2.2&tabs=windows).
+For configuring the web server beyond the default settings (urls, certs, permissions etc.) check out these links: [Kestrel](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel?view=aspnetcore-2.2), [http.sys](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/httpsys?view=aspnetcore-2.2) and [everything else](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/?view=aspnetcore-2.2&tabs=windows).
 
