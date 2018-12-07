@@ -29,6 +29,7 @@ namespace ControlBoard
 
             app.UseStaticFiles();
 
+            // see https://docs.microsoft.com/en-us/aspnet/core/fundamentals/routing?view=aspnetcore-2.2
             var routeBuilder = new RouteBuilder(app);
             routeBuilder.MapPut("cmd/{*cmd}", context =>
             {
